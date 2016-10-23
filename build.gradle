@@ -1,0 +1,27 @@
+group 'com.github.brunodles'
+version '0.1.0'
+
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.github.brunodles:cexec:-SNAPSHOT'
+    }
+}
+
+task ifconfig(type: com.github.brunodles.cexec.Cexec) {
+    description "Wow this is my task" // <- this will appear when you list tasks for your project
+    command "ifconfig" // <- the terminal command you want to run
+    printCommand true // <- true if you want to see the command printed before it's execution. Useful if you have some complex command with variables.
+}
